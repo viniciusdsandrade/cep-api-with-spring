@@ -1,25 +1,28 @@
 package com.restful.correios.cep.service.impl;
 
+import com.restful.correios.cep.dto.DadosDetalhamentoEndereco;
 import com.restful.correios.cep.dto.DadosListagemEndereco;
-import com.restful.correios.cep.dto.EnderecoRequest;
-import com.restful.correios.cep.service.EnderecoFeign;
 import com.restful.correios.cep.service.EnderecoService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class EnderecoServiceImpl implements EnderecoService {
 
-    private final EnderecoFeign enderecoFeign;
+    private final String url = "https://viacep.com.br/ws/";
+    private final String json = "/json/";
 
-    public EnderecoServiceImpl(EnderecoFeign enderecoFeign) {
-        this.enderecoFeign = enderecoFeign;
+    @Override
+    public DadosListagemEndereco consultaCep(String cep) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = this.url + cep + this.json;
+        return restTemplate.getForObject(url, DadosListagemEndereco.class);
     }
 
     @Override
-    public DadosListagemEndereco buscaEnderecoPorCep(EnderecoRequest endereco) {
-        return enderecoFeign.buscaEnderecoPorCep(endereco.cep());
+    public DadosDetalhamentoEndereco detalhamentoCep(String cep) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = this.url + cep + this.json;
+        return restTemplate.getForObject(url, DadosDetalhamentoEndereco.class);
     }
-
-
-
 }

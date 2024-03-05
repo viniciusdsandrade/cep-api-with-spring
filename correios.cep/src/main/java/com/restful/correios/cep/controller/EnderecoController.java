@@ -1,9 +1,8 @@
 package com.restful.correios.cep.controller;
 
+import com.restful.correios.cep.dto.DadosDetalhamentoEndereco;
 import com.restful.correios.cep.dto.DadosListagemEndereco;
-import com.restful.correios.cep.dto.EnderecoRequest;
 import com.restful.correios.cep.service.impl.EnderecoServiceImpl;
-import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,8 +17,13 @@ public class EnderecoController {
         this.service = service;
     }
 
-    @GetMapping("/cep")
-    public ResponseEntity<DadosListagemEndereco> consultaCep(@RequestBody @Valid EnderecoRequest enderecoRequest) {
-        return ResponseEntity.ok(service.buscaEnderecoPorCep(enderecoRequest));
+    @GetMapping("/cep/{cep}")
+    public ResponseEntity<DadosListagemEndereco> consultaCep(@PathVariable("cep") String cep) {
+        return ResponseEntity.ok(service.consultaCep(cep));
+    }
+
+    @GetMapping("/cep/detalhamento/{cep}")
+    public ResponseEntity<DadosDetalhamentoEndereco> detalhamentoCep(@PathVariable("cep") String cep) {
+        return ResponseEntity.ok(service.detalhamentoCep(cep));
     }
 }

@@ -1,6 +1,6 @@
 package com.restful.correios.cep.entity;
 
-import jakarta.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tb_endereco")
 public class Endereco {
 
     private String cep;

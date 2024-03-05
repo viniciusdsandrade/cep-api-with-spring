@@ -1,11 +1,15 @@
 package com.restful.correios.cep.dto;
 
-public record DadosListagemEndereco(
+public record DadosDetalhamentoEndereco(
         String cep,
         String logradouro,
+        String complemento,
         String bairro,
         String localidade,
         String uf,
-        String ddd
+        String ibge,
+        String gia,
+        String ddd,
+        String siafi
 ) {
 }

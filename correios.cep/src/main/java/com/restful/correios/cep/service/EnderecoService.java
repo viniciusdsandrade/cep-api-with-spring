@@ -1,9 +1,15 @@
 package com.restful.correios.cep.service;
 
+import com.restful.correios.cep.dto.DadosDetalhamentoEndereco;
 import com.restful.correios.cep.dto.DadosListagemEndereco;
-import com.restful.correios.cep.dto.EnderecoRequest;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public interface EnderecoService {
 
-    DadosListagemEndereco buscaEnderecoPorCep(EnderecoRequest cep);
+    DadosListagemEndereco consultaCep(String cep);
+
+    DadosDetalhamentoEndereco detalhamentoCep(String cep);
 }
